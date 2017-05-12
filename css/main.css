@@ -3,6 +3,16 @@
 *::after {
   box-sizing: border-box;
 }
+* {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
 
 body, html {
   margin: 0;
@@ -12,6 +22,7 @@ body, html {
 body {
   display: flex;
   flex-direction: column;
+  font-family: 'Roboto', sans-serif;
   height: 100vh;
   justify-content: space-between;
 }
@@ -19,20 +30,44 @@ body {
 
 
 header {
-  background-color: #f4f4f4;
+  background-color: #A4CBD4;
+  color: #130036;
+  border-bottom: #bce9f3 1px solid;
   align-items: center;
   display: flex;
-  padding: 0 10px;
-  max-height: 60px;
-  justify-content: space-between;
+  padding: 0 2rem;
+  height: 6rem;
+}
+
+header svg {
+  height: 3rem;
+  width: 1rem;
+  fill: #130036;
+}
+
+.logo {
+  margin-right: .8rem;
+}
+
+.location {
+  font-weight: normal;
+  font-size: 1.6rem;
+}
+
+.current-date {
+  font-size: 1.4rem;
+  margin-left: auto;
 }
 
 main {
+  background-color: #0083B2;
+  color: #fff;
   flex: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   overflow-y: scroll;
+  padding: 0 2rem;
 }
 
 main > div {
@@ -41,25 +76,33 @@ main > div {
 }
 
 footer {
+  background-color: #A4CBD4;
+  border-top: #bce9f3 1px solid;
+  color: #130036;
   align-items: center;
   display: flex;
-  background-color: #f4f4f4;
 }
 
 main svg {
-  fill: black;
-  max-height: 210px;
+  fill: #fff;
+  max-height: 21rem;
   width: auto;
 }
 
 
 .temp {
-  font-size: 100px;
+  font-size: 10rem;
   text-align: center;
 }
+
 .temp::after,
 .forecast__temp::after {
   content: "º";
+}
+
+.forecast__date,
+.forecast__temp {
+  font-size: 1.2rem;
 }
 
 .forecast {
@@ -69,9 +112,9 @@ main svg {
 }
 
 .forecast svg {
-  fill: black;
-  width: 40px;
-  height: 45px;
+  fill: #130036;
+  width: 4rem;
+  height: 4.5rem;
 }
 
 .forecast__item {
@@ -80,5 +123,41 @@ main svg {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px 0;
+  padding: 2rem 0;
+}
+
+.forecast__item:not(:last-child) {
+  border-right: #95b8c0 1px solid;
+}
+
+.weather-secondary__item {
+  flex: 1;
+  text-align: center;
+  padding: 2.4rem 0 1.6rem;
+}
+
+.weather-secondary__item:not(:last-child) {
+  border-right: #55a2bb 1px solid;
+}
+
+.weather-secondary__item h2 {
+  font-weight: normal;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.weather-secondary__item p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.weather-description {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  border-bottom: #55a2bb 1px solid;
+  padding-bottom: 1.6rem;
+}
+
+.weather-icon__container {
+  margin-bottom: 1.6rem;
 }

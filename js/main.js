@@ -76,9 +76,21 @@ function todaysWeather(lat, lon) {
           <svg><use class="weather-icon" xlink:href="#icons-${data.weather[0].icon}"></use></svg>
         </div>
         <div class="weather-description">${data.weather[0].description}</div>
-        <div class="humidity">Humidity: ${data.main.humidity} %</div>
-        <div class="wind-direction">Wind Direction: ${data.wind.deg} deg</div>
-        <div class="wind-speed">Wind Speed: ${data.wind.speed} m/s</div>
+        <div class="weather-secondary">
+          <div class="weather-secondary__item">
+            <h2>Humidity</h2>
+            <p>${data.main.humidity}%</p>
+          </div>
+          <div class="weather-secondary__item">
+            <h2>Wind Direction</h2>
+            <p>${data.wind.deg} deg</p>
+          </div>
+          <div class="weather-secondary__item">
+            <h2>Wind Speed</h2>
+            <p>${data.wind.speed}m/s</p>
+          </div>
+        </div>
+
       `
       document.querySelector('main').innerHTML = mainContent;
     } else {
