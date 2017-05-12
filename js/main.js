@@ -56,17 +56,10 @@ function tempConversion(temp, region) {
   } else {
     return (tempToNum - 273).toFixed(0);
   }
-  con
 }
 
 function todaysWeather(lat, lon) {
   const request = new XMLHttpRequest();
-  const tempContainer = document.querySelector('.temp');
-  const weatherDescriptionContainer = document.querySelector('.weather-description');
-  const weatherIcon = document.querySelector('.weather-icon');
-  const humidityContainer = document.querySelector('.humidity');
-  const windSpeedContainer = document.querySelector('.wind-speed');
-  const windDirectionContainer = document.querySelector('.wind-direction');
   let tempConverted = false;
 
   request.open('GET', `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`, true);
@@ -75,12 +68,19 @@ function todaysWeather(lat, lon) {
       const data = JSON.parse(request.responseText);
       console.log(data);
       const region = data.sys.country;
-      tempContainer.textContent = tempConversion(data.main.temp, region);
-      weatherDescriptionContainer.textContent = data.weather[0].description;
-      weatherIcon.setAttribute('href', `#icons-${data.weather[0].icon}`);
-      humidityContainer.textContent = `Humidity: ${data.main.humidity} %`;
-      windSpeedContainer.textContent = `Wind Speed: ${data.wind.speed} m/s`;
-      windDirectionContainer.textContent = `Wind Direction: ${data.wind.deg} deg`;
+      const temp = tempConversion(data.main.temp, region);
+
+      const mainContent = `
+        <div class="temp">${temp}</div>
+        <div class="weather-icon__container">
+          <svg><use class="weather-icon" xlink:href="#icons-${data.weather[0].icon}"></use></svg>
+        </div>
+        <div class="weather-description">${data.weather[0].description}</div>
+        <div class="humidity">Humidity: ${data.main.humidity} %</div>
+        <div class="wind-direction">Wind Direction: ${data.wind.deg} deg</div>
+        <div class="wind-speed">Wind Speed: ${data.wind.speed} m/s</div>
+      `
+      document.querySelector('main').innerHTML = mainContent;
     } else {
       console.log("No weather for today");
     }
@@ -121,7 +121,7 @@ function fiveDayForecast(lat, lon) {
         const forecastSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         forecastIconContainer.appendChild(forecastSVG);
         const forecastIcon = document.createElementNS("http://www.w3.org/2000/svg", 'use');
-        forecastIcon.setAttribute('href', `#icons-${data.list[i].weather[0].icon}`);
+        forecastIcon.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#icons-${data.list[i].weather[0].icon}`);
         forecastSVG.appendChild(forecastIcon);
         forecastItem.appendChild(forecastIconContainer);
 
