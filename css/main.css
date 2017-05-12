@@ -29,6 +29,14 @@ header {
 
 main {
   flex: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main > div {
+  display: flex;
+  justify-content: center;
 }
 
 footer {
@@ -56,6 +64,7 @@ main svg {
 .forecast {
   display: flex;
   width: 100%;
+  justify-content: center;
 }
 
 .forecast svg {
@@ -65,9 +74,7 @@ main svg {
 }
 
 .forecast__item {
-  flex: 1 0 20%;
-  max-width: 20%;
-
+  flex: 1;
   align-items: center;
   display: flex;
   flex-direction: column;
