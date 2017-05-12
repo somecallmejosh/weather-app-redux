@@ -4,7 +4,7 @@ function loadResults() {
   todaysWeather(lat, lon);
   fiveDayForecast(lat, lon);
 }
-setTimeout(loadResults, 200);
+setTimeout(loadResults, 300);
 
 let city = '';
 let lat = '';
@@ -130,7 +130,6 @@ function fiveDayForecast(lat, lon) {
             today = "SAT";
             break;
         }
-
 
         const forecastItem = document.createElement('div');
         forecastItem.classList.add('forecast__item');
