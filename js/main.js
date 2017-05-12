@@ -105,7 +105,32 @@ function fiveDayForecast(lat, lon) {
 
       // Grab noon time temps for these days (1+8 works out to be noon)
       for(let i = 4; i < data.list.length; i = i+8) {
-        const today = new Date(data.list[i].dt_txt).getUTCDay();
+        let today = '';
+
+        switch (new Date(data.list[i].dt_txt.replace(/\s+/g, 'T').concat('.000+08:00')).getDay()) {
+          case 0:
+            today = "SUN";
+            break;
+          case 1:
+            today = "MON";
+            break;
+          case 2:
+            today = "TUE";
+            break;
+          case 3:
+            today = "WED";
+            break;
+          case 4:
+            today = "THU";
+            break;
+          case 5:
+            today = "FRI";
+            break;
+          case 6:
+            today = "SAT";
+            break;
+        }
+
 
         const forecastItem = document.createElement('div');
         forecastItem.classList.add('forecast__item');
