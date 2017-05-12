@@ -1,0 +1,76 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+
+
+header {
+  background-color: #f4f4f4;
+  align-items: center;
+  display: flex;
+  padding: 0 10px;
+  max-height: 60px;
+  justify-content: space-between;
+}
+
+main {
+  flex: auto;
+}
+
+footer {
+  align-items: center;
+  display: flex;
+  background-color: #f4f4f4;
+}
+
+main svg {
+  fill: black;
+  max-height: 210px;
+  width: auto;
+}
+
+
+.temp {
+  font-size: 100px;
+  text-align: center;
+}
+.temp::after,
+.forecast__temp::after {
+  content: "º";
+}
+
+.forecast {
+  display: flex;
+  width: 100%;
+}
+
+.forecast svg {
+  fill: black;
+  width: 40px;
+  height: 45px;
+}
+
+.forecast__item {
+  flex: 1 0 20%;
+  max-width: 20%;
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 0;
+}
