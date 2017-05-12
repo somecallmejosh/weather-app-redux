@@ -69,7 +69,7 @@ function todaysWeather(lat, lon) {
   const windDirectionContainer = document.querySelector('.wind-direction');
   let tempConverted = false;
 
-  request.open('GET', `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`, true);
+  request.open('GET', `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`, true);
   request.onload = function() {
     if(request.status >= 200 && request.status < 400) {
       const data = JSON.parse(request.responseText);
@@ -94,7 +94,7 @@ function todaysWeather(lat, lon) {
 function fiveDayForecast(lat, lon) {
   const forecastContainer = document.querySelector('.forecast');
   const request = new XMLHttpRequest();
-  request.open('GET', `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`, true);
+  request.open('GET', `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`, true);
 
   request.onload = function() {
     if(request.status >= 200 && request.status < 400) {
