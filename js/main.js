@@ -11,6 +11,7 @@ let lat = '';
 let lon = '';
 let region = '';
 let zip = '';
+const bodyTag = document.querySelector('body');
 const mainContent = document.querySelector('.main');
 const apiKey = 'cd11931c3718288fa737a331a243db04';
 
@@ -52,9 +53,35 @@ function updateLocalInfo() {
 function tempConversion(temp, region) {
   let tempToNum = parseInt(temp);
   if(region === 'US') {
-    return ((tempToNum - 273.15) * 1.8 + 32).toFixed(0);
+    const fahrConversion = ((tempToNum - 273.15) * 1.8 + 32).toFixed(0);
+
+    if(fahrConversion < 33) {
+      bodyTag.className = 'freezing';
+    } else if (fahrConversion >= 33 && fahrConversion < 50) {
+      bodyTag.className = 'cold';
+    } else if(fahrConversion >= 50 && fahrConversion < 65) {
+      bodyTag.className = 'cool';
+    } else if(fahrConversion >= 65 && fahrConversion< 85) {
+      bodyTag.className = 'warm';
+    } else {
+      bodyTag.cclassName = 'hot';
+    }
+    return fahrConversion;
   } else {
-    return (tempToNum - 273).toFixed(0);
+    const celConversion = (tempToNum - 273).toFixed(0);
+
+    if(celConversion <= 0) {
+      bodyTag.className = 'freezing';
+    } else if (celConversion > 0 && celConversion < 10) {
+      bodyTag.className = 'cold';
+    } else if(celConversion >= 10 && celConversion < 18) {
+      bodyTag.className = 'cool';
+    } else if(celConversion >= 18 && celConversion< 30) {
+      bodyTag.className = 'warm';
+    } else {
+      bodyTag.cclassName = 'hot';
+    }
+    return celConversion;
   }
 }
 
@@ -71,8 +98,8 @@ function todaysWeather(lat, lon) {
       const temp = tempConversion(data.main.temp, region);
 
       const mainContent = `
-        <div class="temp">${temp}</div>
-        <div class="weather-icon__container">
+        <div class="weather__today">
+          <span class="temp">${temp}º</span>
           <svg><use class="weather-icon" xlink:href="#icons-${data.weather[0].icon}"></use></svg>
         </div>
         <div class="weather-description">${data.weather[0].description}</div>
@@ -83,14 +110,13 @@ function todaysWeather(lat, lon) {
           </div>
           <div class="weather-secondary__item">
             <h2>Wind Direction</h2>
-            <p>${data.wind.deg} deg</p>
+            <p>${data.wind.deg}<span>deg</span></p>
           </div>
           <div class="weather-secondary__item">
             <h2>Wind Speed</h2>
-            <p>${data.wind.speed}m/s</p>
+            <p>${data.wind.speed}<span>m/s</span></p>
           </div>
         </div>
-
       `
       document.querySelector('main').innerHTML = mainContent;
     } else {
@@ -163,7 +189,7 @@ function fiveDayForecast(lat, lon) {
 
         const forecastTempContainer = document.createElement('div');
         forecastTempContainer.classList.add('forecast__temp');
-        forecastTempContainer.textContent = tempConversion(data.list[i].main.temp, region) ;
+        forecastTempContainer.textContent = tempConversion(data.list[i].main.temp, region) + 'º';
         forecastItem.appendChild(forecastTempContainer);
 
       }

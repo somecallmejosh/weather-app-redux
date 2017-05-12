@@ -19,6 +19,11 @@ body, html {
   padding: 0;
 }
 
+.current-date {
+  font-size: 1.4rem;
+  margin-left: auto;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -27,82 +32,11 @@ body {
   justify-content: space-between;
 }
 
-
-
-header {
-  background-color: #A4CBD4;
-  color: #130036;
-  border-bottom: #bce9f3 1px solid;
-  align-items: center;
-  display: flex;
-  padding: 0 2rem;
-  height: 6rem;
-}
-
-header svg {
-  height: 3rem;
-  width: 1rem;
-  fill: #130036;
-}
-
-.logo {
-  margin-right: .8rem;
-}
-
-.location {
-  font-weight: normal;
-  font-size: 1.6rem;
-}
-
-.current-date {
-  font-size: 1.4rem;
-  margin-left: auto;
-}
-
-main {
-  background-color: #0083B2;
-  color: #fff;
-  flex: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow-y: scroll;
-  padding: 0 2rem;
-}
-
-main > div {
-  display: flex;
-  justify-content: center;
-}
-
-footer {
-  background-color: #A4CBD4;
-  border-top: #bce9f3 1px solid;
-  color: #130036;
-  align-items: center;
-  display: flex;
-}
-
-main svg {
-  fill: #fff;
-  max-height: 21rem;
-  width: auto;
-}
-
-
-.temp {
-  font-size: 10rem;
-  text-align: center;
-}
-
-.temp::after,
-.forecast__temp::after {
-  content: "º";
-}
-
 .forecast__date,
 .forecast__temp {
   font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .forecast {
@@ -112,7 +46,7 @@ main svg {
 }
 
 .forecast svg {
-  fill: #130036;
+  fill: #fff;
   width: 4rem;
   height: 4.5rem;
 }
@@ -123,11 +57,73 @@ main svg {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem 0;
 }
 
-.forecast__item:not(:last-child) {
-  border-right: #95b8c0 1px solid;
+footer {
+  align-items: stretch;
+  display: flex;
+  height: 15vh
+}
+
+header {
+  align-items: center;
+  display: flex;
+  padding: 0 2rem;
+  height: 10vh;
+}
+
+header svg {
+  height: 3rem;
+  width: 1rem;
+}
+
+.logo {
+  margin-right: .8rem;
+}
+
+.location {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+}
+
+main {
+  flex: auto;
+  display: flex;
+  color: #fff;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: scroll;
+  padding: 0 1rem;
+  height: 75vh;
+}
+
+main > div {
+  display: flex;
+  justify-content: center;
+}
+
+main svg {
+  height: 12.4rem;
+  width: 13.8rem;
+  fill: #fff;
+}
+
+.temp {
+  font-size: 10rem;
+  text-align: center;
+}
+
+.weather-description {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  padding-bottom: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 1.6px;
+}
+
+.weather-icon__container {
+  margin-bottom: 1.6rem;
 }
 
 .weather-secondary__item {
@@ -136,28 +132,230 @@ main svg {
   padding: 2.4rem 0 1.6rem;
 }
 
-.weather-secondary__item:not(:last-child) {
-  border-right: #55a2bb 1px solid;
-}
-
 .weather-secondary__item h2 {
   font-weight: normal;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 1.5;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.weather-secondary__item p span {
+  font-size: 1rem;
 }
 
 .weather-secondary__item p {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   line-height: 1.5;
 }
 
-.weather-description {
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  border-bottom: #55a2bb 1px solid;
-  padding-bottom: 1.6rem;
+.weather__today {
+  margin-bottom: 2.4rem;
 }
 
-.weather-icon__container {
-  margin-bottom: 1.6rem;
+
+
+
+/*
+  Color Scoping
+  =======================
+*/
+
+/*
+  Freezing
+*/
+
+.freezing footer {
+  background-color: #061E97;
+  border-top: #3a55ff 1px solid;
+  color: #fff;
+}
+
+.freezing .forecast__item:not(:last-child) {
+  border-right: #041163 1px solid;
+}
+
+.freezing .forecast svg {
+  fill: #fff;
+}
+
+.freezing header {
+  background-color: #061E97;
+  border-bottom: #3a55ff 1px solid;
+  color: #fff;
+}
+
+.freezing main {
+  background-color: #123CF4;
+}
+
+.freezing .weather-description {
+  border-bottom: #325ef6 1px solid;
+}
+
+.freezing .weather-secondary__item:not(:last-child) {
+  border-right: #325ef6 1px solid;
+}
+
+
+/*
+  Cold
+*/
+/* #A4CBD4 == #70A2FE */
+/* #038EBB == #08D2FF */
+
+.cold footer {
+  background-color: #08D2FF;
+  border-top: #5be1ff 1px solid;
+  color: #054956;
+}
+
+.cold .forecast__item:not(:last-child) {
+  border-right: #5be1ff 1px solid;
+}
+
+.cold .forecast svg {
+  fill: #fff;
+}
+
+.cold header {
+  background-color: #08D2FF;
+  border-bottom: #5be1ff 1px solid;
+  color: #054956;
+}
+
+.cold main {
+  background-color: #70A2FE;
+}
+
+.cold .weather-description {
+  border-bottom: #b2cffe 1px solid;
+}
+
+.cold .weather-secondary__item:not(:last-child) {
+  border-right: #b2cffe 1px solid;
+}
+
+
+/*
+  Cool
+*/
+
+/*
+  #7BD3EE
+  #5CADCB
+  #F3B211
+*/
+
+.cool footer {
+  background-color: #F3B211;
+  border-top: #bce9f3 1px solid;
+  color: #362804;
+}
+
+.cool .forecast__item:not(:last-child) {
+  border-right: #f3ce73 1px solid;
+}
+
+.cool .forecast svg {
+  fill: #fff;
+}
+
+.cool header {
+  background-color: #F3B211;
+  border-bottom: #bce9f3 1px solid;
+  color: #362804;
+}
+
+.cool main {
+  background-color: #5CADCB;
+}
+
+.cool .weather-description {
+  border-bottom: #7BD3EE 1px solid;
+}
+
+.cool .weather-secondary__item:not(:last-child) {
+  border-right: #7BD3EE 1px solid;
+}
+
+/*
+  Warm
+*/
+/*
+#2B0301
+#F37215
+*/
+.warm footer {
+  background-color: #2B0301;
+  border-top: #ffb87a 1px solid;
+  color: #fff;
+}
+
+.warm .forecast__item:not(:last-child) {
+  border-right: #2b2323 1px solid;
+}
+
+.warm header {
+  background-color: #2B0301;
+  border-bottom: #ffb87a 1px solid;
+  color: #fff;
+}
+
+.warm header svg {
+  fill: #fff;
+}
+
+.warm main {
+  background-color: #F37215;
+}
+
+.warm .weather-description {
+  border-bottom: #f3b88e 1px solid;
+}
+
+.warm .weather-secondary__item:not(:last-child) {
+  border-right: #f3b88e 1px solid;
+}
+
+/*
+  Hot
+*/
+
+/*
+  #BD0100
+  #FF6F16
+*/
+
+.hot footer {
+  background-color: #FF6F16;
+  border-top: #ffc4a0 1px solid;
+  color: #451e06;
+}
+
+.hot .forecast__item:not(:last-child) {
+  border-right: #d05b12 1px solid;
+}
+
+.hot header {
+  background-color: #FF6F16;
+  border-bottom: #ffc4a0 1px solid;
+  color: #451e06;
+}
+
+.hot header svg {
+  fill: #2a1204;
+}
+
+.hot main {
+  background-color: #BD0100;
+}
+
+.hot .weather-description {
+  border-bottom: #bd3d3d 1px solid;
+}
+
+.hot .weather-secondary__item:not(:last-child) {
+  border-right: #bd3d3d 1px solid;
 }
